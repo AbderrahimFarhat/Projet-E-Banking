@@ -1,0 +1,28 @@
+<div class="container-fluid mb-5">
+    <div class="shadow bg-light border container-fluid mt-5 mx-auto" style="width: 75%;">
+        <div class="card-header d-flex justify-content-between">
+            <h3 class="text-dark">Agents</h3>
+            <button type="button" class="btn btn-outline-primary btn-lg" style="width: 10rem; text-align:center;"routerLink="./createAgent"> Créer Agent</button>
+        </div>
+        <table class="table"  style="min-height: 100px;">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Nom</th>
+                <th scope="col">téléphone</th>
+                <th scope="col">Date de Création</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let agent of agents;">
+                <th scope="row">{{agent.id}}</th>
+                <td>{{agent.username}}</td>
+                <td>{{agent.firstName}}</td>
+                <td>{{agent.lastName}}</td>
+                <td>{{agent.createdAt}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

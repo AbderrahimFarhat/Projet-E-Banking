@@ -1,0 +1,37 @@
+<div class="container-fluid mb-5">
+    <div class="shadow bg-light border container mt-5 py-4">
+        <div class="col-md-7 col-lg-8 mx-auto">
+          <div class="d-flex gap-3 p-3 align-items-center"style="background-color:white; border:solid 1px #ced4da;" >
+            <img src={{donation.img}} width="70" height="40" class="rounded-circle flex-shrink-0">
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div>
+                <h5 class="mb-0">{{donation.title}}</h5>
+                <p class="mb-0 opacity-75">{{donation.description}}</p>
+              </div>
+            </div>
+        </div>
+            <form class="needs-validation py-2" [formGroup]="form" (ngSubmit)="paye()">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                    <label for="lastName" class="form-label">Montant du don (DH)</label>
+                    <input type="text" class="form-control" formControlName="amount" placeholder="" value="" required="">
+                  </div>
+              </div>
+    
+              <hr class="my-4">
+              <div class="row d-flex justify-content-between">
+                <h5 class="m-0 col">Total :</h5>
+                <p class="m-0 opacity-75 col text-end">10.00 DH</p>
+              </div>
+    
+              <hr class="my-4">
+              <div class="row">
+                <button class="btn btn-danger btn-lg col mx-2" type="submit">Valider</button>
+                <button class="btn btn-warning btn-lg col mx-2" routerLink="../donation" type="submit">Annuler</button>
+              </div>
+              
+            </form>
+          </div>
+    </div>
+
+</div>

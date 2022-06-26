@@ -1,0 +1,77 @@
+
+ .container{
+     background-color:#abefde;
+     display:flex;
+     min-height:100vh;
+     justify-content:center;
+     align-items:center;
+ }
+ 
+ 
+ .card{
+     height:220px;
+     width:330px;
+     border-radius:20px;
+     background-image:linear-gradient(to top right,#0f2577,#1f43b3);
+     padding:10px;
+     padding-right:20px;
+     padding-left:20px;
+     color:#fff;
+     position:relative;
+      overflow:hidden;
+ }
+ 
+ 
+ 
+ 
+ 
+ .visa h4{
+     font-size:40px;
+     font-family: 'Rokkitt', serif;
+     
+ }
+ 
+ .visa span{
+     margin-left:2px;
+     font-family: 'Rokkitt', serif;
+ }
+
+
+ 
+
+ .top-row{
+    display: flex;
+    justify-content: space-between;
+     
+    position: relative;
+
+ }
+ 
+ .bottom-row{
+     display:flex;
+     flex-direction:row;
+     align-items:center;
+     position:absolute;
+     bottom:20px;
+     
+ }
+ 
+ .bottom-row .dots{
+     display:flex;
+     flex-direction:row;
+     margin-right:7px;
+ }
+ 
+ .bottom-row .dots span{
+     height:6px;
+     width:6px;
+     background-color:#fff;
+     border-radius:50%;
+     margin:0 2px;
+ }
+ 
+ .bottom-row .number{
+     font-size:20px;
+     font-weight:600;
+ }
+ 

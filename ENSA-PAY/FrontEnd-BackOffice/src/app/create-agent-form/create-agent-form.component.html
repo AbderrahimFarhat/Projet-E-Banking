@@ -1,0 +1,122 @@
+<div class="container-fluid mb-5 ">
+    <div class="shadow bg-light border container-fluid mt-5 mx-auto border-radius" style="width: 75%;">
+        <form [formGroup]="agentForm" (ngSubmit)="addAgent()" #localForm="ngForm">
+        <div class="card-header">
+            <h3 class="text-dark">Informations personnelles</h3>
+        </div>
+        <!-- <input type="file" formControlName="ok"  class="form-control" id="ok" (change)="onFileChange($event)">
+        <input type="file" formControlName="ok"  class="form-control" id="ok" (change)="onFileChange($event)"> -->
+        <div class="card-body">
+                <div class="row m-1 g-3">
+                    <div class="col">
+                        <input type="text" formControlName="lastName" placeholder="Last Name" class="form-control" id="lastName"
+                        >
+                        <div *ngIf="agentForm.get('lastName')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                            *
+                        </div>
+                    </div>
+                    <div class="col">
+                        <input type="text" formControlName="firstName" placeholder="First Name" class="form-control" id="firstName">
+                        <div *ngIf="agentForm.get('firstName')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                            *
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-1 g-3">
+                    <div class="col">
+                        <input type="text" formControlName="username" placeholder="Username" class="form-control" id="username">
+                        <div *ngIf="agentForm.get('username')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                            *
+                        </div>
+                    </div>
+                    <div class="col">
+                        <input type="text" formControlName="address" placeholder="Address " class="form-control" id="address ">
+                        <div *ngIf="agentForm.get('address')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                            *
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-1 g-3">
+                    <div class="col">
+                        <select class="form-select" formControlName="identityType">
+                            <option value="CIN" selected>CIN</option>
+                            <option value="PASSPORT">PassePort</option>
+                            <option value="2">Carte de sejour</option>
+                          </select>
+                        <div *ngIf="agentForm.get('identityType')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                            *
+                        </div>
+                    </div>
+                    <div class="col">
+                        <input type="text" formControlName="identityCardNumber" placeholder="Identity Card Number " class="form-control" id="identityCardNumber">
+                        <div *ngIf="agentForm.get('identityCardNumber')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                            *
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-1 g-3">
+                    <div class="col">
+                        <input type="email" formControlName="email" placeholder="Email" class="form-control" id="email">
+                        <div *ngIf="agentForm.get('email')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                            *
+                        </div>
+                    </div>
+                    <div class="col">
+                        <input type="text" formControlName="confirmEmail" placeholder="Confirm Email " class="form-control" id="confirmEmail">
+                        <div *ngIf="agentForm.get('confirmEmail')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                            *
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-1 g-3">
+                    <div class="col">
+                        <input type="number" formControlName="phone" placeholder="Phone Number" class="form-control" id="phone">
+                        <div *ngIf="agentForm.get('phone')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                            *
+                        </div>
+                    </div>
+                    <div class="col">
+                        <input type="text" formControlName="tradeRegister" placeholder="Trade Register Number" class="form-control" id="trade_register">
+                        <div *ngIf="agentForm.get('tradeRegister')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                            *
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-1 g-3">
+                    <div class="col-6">
+                        <input type="number" formControlName="patentNumber" placeholder="Patent Number" class="form-control" id="patent_number">
+                        <div *ngIf="agentForm.get('patentNumber')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                            *
+                        </div>
+                    </div>
+                </div>           
+        </div>
+        <div class="card-header">
+            <h3 class="text-dark">Pièce joites</h3>
+        </div>
+        <div class="card-body">
+            <div class="row m-1 g-3">
+                <div class="col">
+                    <input type="file" formControlName="identityCardRecto"  class="form-control" id="identity_card_recto">
+                    <div *ngIf="agentForm.get('identityCardRecto')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                            *
+                        </div>
+                </div>
+                <div class="col">
+                    <input type="file" formControlName="identityCardVerso"  class="form-control" id="identity_card_verso">
+                    <div *ngIf="agentForm.get('identityCardVerso')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                            *
+                    </div>
+                </div>
+            </div>     
+    </div>
+        <div class="card-footer">
+            <div class="row m-1 g-3">
+                <div class="col-12">
+                    <button class="col-12 btn btn-primary fs-4" type="submit">Confirm</button>
+                  </div>
+            </div>
+        </div>
+    </form> 
+    </div>
+</div>

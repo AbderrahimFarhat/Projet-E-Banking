@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="shadow bg-light border container mt-5">
+        <div class="p-3">
+            <h3 class="text-dark">Effectuer un recharge</h3>
+        </div>
+        <div class="p-2">
+            <div class="row p-2">
+                <form class="needs-validation py-2">
+                    <div class="row g-3">
+                      <div class="col-sm-6">
+                        <label for="operation" class="form-label">Choisir une opération</label>
+                        <select class="form-select" id="operation" name="operation">
+                            <option value="0" selected>Maroc Telecome</option>
+                            <option value="1">Orange Maroc</option>
+                            <option value="2">Inwi</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="operation" class="form-label">Choisir une opération</label>
+                        <select class="form-select" id="operation" name="operation">
+                            <option value="10" selected>10 DH</option>
+                            <option value="20">20 DH</option>
+                            <option value="25">25 DH</option>
+                            <option value="30">30 DH</option>
+                            <option value="50">50 DH</option>
+                            <option value="100">100 DH</option>
+                            <option value="200">200 DH</option>
+                            <option value="300">300 DH</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="phone" class="form-label">Numéro du téléphone</label>
+                        <input type="number" class="form-control" id="phone" placeholder="" value="" required="">
+                      </div>
+                    </div>
+          
+                    <hr class="my-4">
+                    <div class="row d-flex justify-content-between">
+                      <h5 class="m-0 col">Total :</h5>
+                      <p class="m-0 opacity-75 col text-end">10.00 DH</p>
+                    </div>
+          
+                    <hr class="my-4">
+                    <div class="row">
+                      <button class="btn btn-success btn-lg col mx-2" type="submit">Recharger</button>
+                      <button class="btn btn-warning btn-lg col mx-2" routerLink="../donation" type="submit">Annuler</button>
+                    </div>
+                    
+                  </form>
+                
+            
+        </div>
+        
+    </div>
+
+</div>

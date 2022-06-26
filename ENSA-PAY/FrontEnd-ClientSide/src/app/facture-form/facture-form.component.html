@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <div class="shadow bg-light border container mt-5 py-4">
+        <div class="col-md-7 col-lg-8 mx-auto">
+          <div class="d-flex gap-3 p-3 align-items-center"style="background-color:white; border:solid 1px #ced4da;" >
+            <img src={{creditor.img}} width="70" height="40" class="rounded-circle flex-shrink-0">
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div>
+                <h5 class="mb-0">{{creditor.title}}</h5>
+                <p class="mb-0 opacity-75">{{creditor.description}}</p>
+              </div>
+            </div>
+        </div>
+            <form class="needs-validation py-2">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Description</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let unpaid of unpaidBillTemp">
+                    <td>{{unpaid.description}}</td>
+                    <td>{{unpaid.amount}}</td>
+                    <td><button class="btn btn-primary" *ngIf="!unpaid.state" (click)="onChecked(unpaid)" type="submit">check</button></td>
+                    <td><button class="btn btn-danger" *ngIf="unpaid.state" (click)="unChecked(unpaid)" type="submit">uncheck</button></td>
+                    
+                  </tr>
+                </tbody>
+            </table>
+              <hr class="my-4">
+              <div class="row d-flex justify-content-between">
+                <h5 class="m-0 col">Total :</h5>
+                <p class="m-0 opacity-75 col text-end">{{totale}} DH</p>
+              </div>
+    
+              <hr class="my-4">
+              <div class="row">
+                <button class="btn btn-primary btn-lg col mx-2" (click)="paye()">Payer</button>
+                <button class="btn btn-warning btn-lg col mx-2" routerLink="../facture" type="submit">Annuler</button>
+              </div>
+              
+            </form>
+          </div>
+    </div>
+
+</div>

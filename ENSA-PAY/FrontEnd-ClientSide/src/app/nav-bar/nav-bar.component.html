@@ -1,0 +1,27 @@
+<nav class="navbar bg-light border-bottom">
+    <div class="container">
+        <div class="d-flex">
+            <button style="background: none;border:0;padding: 0;" routerLink="../home">
+                <h4 style="color:rgb(5,0,91); font-family: 'Anton', sans-serif; font-size: 2rem;" class="m-0" >ENSA-PAY</h4>
+            </button>  
+            <button style="background: none;border:0;padding: 0;" routerLink="../paiment/facture">
+                <p style="color:rgb(5,0,91); font-family: 'Anton', sans-serif; font-size: 1.2rem; text-align:center;margin-left: 40px;margin-bottom: -13px;" >
+                    Facture
+                </p>
+            </button>   
+            <button style="background: none;border:0;padding: 0;" routerLink="../paiment/donation">
+                <p style="color:rgb(5,0,91); font-family: 'Anton', sans-serif; font-size: 1.2rem; text-align:center;margin-left: 40px;margin-bottom: -13px;" >
+                    Donation
+                </p>
+            </button> 
+            <button style="background: none;border:0;padding: 0;" routerLink="../paiment/recharge">
+                <p style="color:rgb(5,0,91); font-family: 'Anton', sans-serif; font-size: 1.2rem; text-align:center;margin-left: 40px;margin-bottom: -13px;" >
+                    Recharge
+                </p>
+            </button>        
+        </div>
+        <button style="background: none;border:0;padding: 0;" (click)="logOut()">
+            <fa-icon [icon]="faArrowRightFromBracket" style="color:rgb(5,0,91); ;font-size:2rem;"></fa-icon>
+        </button>
+    </div>
+</nav>

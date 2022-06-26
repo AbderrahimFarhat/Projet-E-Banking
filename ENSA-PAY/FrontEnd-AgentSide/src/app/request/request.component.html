@@ -1,0 +1,36 @@
+<div class="container-fluid mb-5">
+    <div class="shadow bg-light border container mt-5">
+        <div class="card-header d-flex justify-content-between">
+            <h3 class="text-dark">Requests</h3>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">FirstName</th>
+                    <th scope="col">LastName</th>
+                    <th scope="col">Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let request of requests">
+                    <th scope="row">{{request.id}}</th>
+                    <td>{{request.username}}</td>
+                    <td>{{request.firstName}}</td>
+                    <td>{{request.lastName}}</td>
+                    <td>{{request.createdAt}}</td>
+                    <td>
+                        <button class="btn" (click)="accept(request.id)">
+                            <fa-icon [icon]="faSquareCheck" style="color:green ;font-size:x-large;"></fa-icon>
+                        </button>
+                        <button class="btn" (click)="delete(request.id)">
+                            <fa-icon [icon]="faTrashCan" style="color:Red ;font-size:x-large;"></fa-icon>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

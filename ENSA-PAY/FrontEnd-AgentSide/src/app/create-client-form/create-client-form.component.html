@@ -1,0 +1,59 @@
+    <div class="container-fluid mb-5">
+        <div class="shadow bg-light border container mt-5">
+            <form [formGroup]="clientForm" (ngSubmit)="addClient()" #localForm='ngForm'>
+            <div class="card-header">
+                <h3 class="text-dark">Ouverture d'un compte de paiement</h3>
+            </div>
+            <div class="card-body">
+                    <div class="row m-1 g-3">
+                        <div class="col">
+                            <select class="form-select" formControlName="AccountType">
+                                <option value="200">Hssab 1 - Plafond : 200 DH</option>
+                                <option value="5000">Hssab 2 - Plafond : 5000 DH</option>
+                                <option value="20000">Hssab 3 - Plafond : 20000 DH</option>
+                            </select>
+                            <div *ngIf="clientForm.get('AccountType')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                                *
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-1 g-3">
+                        <div class="col">
+                            <input type="text" formControlName="lastName" placeholder="Last Name" class="form-control" id="lastName">
+                            <div *ngIf="clientForm.get('lastName')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                                *
+                            </div>
+                        </div>
+                        <div class="col">
+                            <input type="text" formControlName="firstName" placeholder="First Name " class="form-control" id="firstName ">
+                            <div *ngIf="clientForm.get('firstName')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                                *
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-1 g-3">
+                        <div class="col">
+                            <input type="number" formControlName="phone" placeholder="Phone number" class="form-control" id="phone">
+                            <div *ngIf="clientForm.get('phone')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                                *
+                            </div>
+                        </div>
+                        <div class="col">
+                            <input type="email" formControlName="email" placeholder="Email" class="form-control" id="email">
+                            <div *ngIf="clientForm.get('email')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
+                                *
+                            </div>
+                        </div>
+                    </div>         
+            </div>
+            <div class="card-footer">
+                <div class="row m-1 g-3">
+                    <div class="col-12">
+                        <button type="submit" class="col-12 btn btn-warning text-dark fs-4">Add</button>
+                      </div>
+                </div>
+            </div>
+        </form> 
+        </div>
+    
+    </div>

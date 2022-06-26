@@ -1,0 +1,40 @@
+<div class="container-fluid background loginComp">
+    <h1 style="color:white; font-family: 'Anton', sans-serif; font-size: 4rem; margin-bottom:1em;" >ENSA-PAY</h1>
+    <div>
+    <div class="text-center shadow bg-light border border-radius mx-auto" style="width: 75%;">
+        <div class="card-header">
+            <h3 class="text-dark">Register</h3>
+        </div>
+        <div class="card-body">
+            <form class="row g-3" [formGroup]="registerForm" (ngSubmit)="register()">
+                <div class="col-12">
+                    <select class="form-select" formControlName="AccountType">
+                        <option value="" disabled selected hidden>Choose your account type</option>
+                        <option value="200">Hssab 1 - Plafond : 200 DH</option>
+                        <option value="5000">Hssab 2 - Plafond : 5000 DH</option>
+                        <option value="20000">Hssab 3 - Plafond : 20000 DH</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                  <input type="text" formControlName="lastName" placeholder="Last Name" class="form-control" id="lastName">
+                </div>
+                <div class="col-12">
+                    <input type="text" formControlName="firstName" placeholder="First Name" class="form-control" id="firstName">
+                </div>
+                <div class="col-12">
+                    <input type="number" formControlName="phone" placeholder="Phone Number" class="form-control" id="phone">
+                </div>  
+                <div class="col-12">
+                    <input type="email" formControlName="email" placeholder="Your Email" class="form-control" id="email">
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="col-12 btn btn-primary text-light fs-4">Send Request</button>
+                </div>
+                <div class="col-12">
+                  <button class="col-12 btn btn-dark text-light fs-4" routerLink="../login">---   already have account   ---</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

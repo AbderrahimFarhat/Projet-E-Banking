@@ -1,0 +1,28 @@
+<div class="container-fluid mb-5">
+    <div class="shadow bg-light border container mt-5">
+        <div class="p-3">
+            <h3 class="text-dark">Effectuer une donation</h3>
+        </div>
+        <div class="p-2">
+            <div class="row p-2">
+                <div class="p-2">
+                    <div class="row p-2">
+                        <div style="width: 25%;" class="mb-3" *ngFor="let donation of donations">
+                            <div class="card d-flex justify-center" style="width: 18rem;">
+                                <img src={{donation.img}} class="card-img-top p-2" alt="..." height="150">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{donation.title}}</h5>
+                                  <p class="card-text">{{donation.description}}</p>
+                                  <button class="btn btn-primary" (click)="paye(donation)">Payer Facture</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>               
+            
+        </div>
+        
+    </div>
+
+</div>

@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  host:"http://192.168.1.5:8085",
-  hostFront:"http://localhost:4200"
+  host:"https://ensa-ensapay.herokuapp.com",
+  hostFront:"https://frontend-agentside-f701e.web.app"
 };

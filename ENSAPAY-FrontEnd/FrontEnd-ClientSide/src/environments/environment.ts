@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  host:"http://192.168.1.5:8085",
-  hostFront:"http://localhost:4200"
+  host:"https://ensa-ensapay.herokuapp.com",
+  hostFront:"https://frontend-clientside.web.app"
 };
 
 /*

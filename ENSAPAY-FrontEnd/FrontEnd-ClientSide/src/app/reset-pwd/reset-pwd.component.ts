@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -10,11 +11,11 @@ import { AuthService } from '../auth.service';
 })
 export class ResetPwdComponent implements OnInit {
   public resetForm:FormGroup;
-  constructor(private router: Router,private authService:AuthService,private fb: FormBuilder) {
+  constructor(private router: Router,private authService:AuthService,private fb: FormBuilder,private popup:NgToastService) {
     this.resetForm = this.fb.group({
-      password: '',
-      newPassword:'',
-      confirmedPassword:''
+      password: new FormControl('',Validators.required),
+      newPassword:new FormControl('',Validators.required),
+      confirmedPassword:new FormControl('',Validators.required)
     });
    }
   ngOnInit(): void {
@@ -29,14 +30,16 @@ export class ResetPwdComponent implements OnInit {
         result => {
           this.authService.setIsPwdChanged(true);
           this.router.navigate(['/', 'home']);
+          this.popup.success({detail:"Success",summary:"Logged successfully please reset your password !!",duration:2500});
         },
         error => {
           console.log("error");
-          
+          this.popup.error({detail:"Error",summary:"Something wrong",duration:2500});
         }
       );
     }else{
       console.log("resetForm ");
+      this.popup.error({detail:"Error",summary:"Something wrong",duration:2500});
       
     }
   }

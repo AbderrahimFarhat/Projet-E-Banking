@@ -33,25 +33,29 @@ export class LoginComponent implements OnInit {
   // }
 
   authentication(){
-    this.authService.login(this.loginForm.value).subscribe(
-      result => {
-        console.log("/login");
-        console.log(result);
-        this.authService.setToken(result["tokken"]);
-        this.popup.success({detail:"Success",summary:"Logged successfully",duration:2500});
-        this.authService.setIsPwdChanged(result["passwordChanged"]);
-        if(this.authService.isPasswordChanged()){
-          this.router.navigate(['/', 'home']);
-        }else{
-          this.popup.success({detail:"Success",summary:"Logged successfully please reset your password !!",duration:2500});
-          this.router.navigate(['/', 'resetPassword']);
-        }
-        },
-        error => {
-          console.log("error");
-          this.popup.error({detail:"Error",summary:"Something wrong",duration:2500});
-        }
-    );
+    if(this.loginForm.value){
+      this.authService.login(this.loginForm.value).subscribe(
+        result => {
+          console.log("/login");
+          this.authService.setToken(result.token);
+          this.popup.success({detail:"Success",summary:"Logged successfully",duration:2500});
+          this.authService.setIsPwdChanged(result.passwordChanged);
+          if(this.authService.isPasswordChanged()){
+            this.router.navigate(['/', 'home']);
+          }else{
+            this.popup.success({detail:"Success",summary:"Logged successfully please reset your password !!",duration:2500});
+            this.router.navigate(['/', 'resetPassword']);
+          }
+          },
+          error => {
+            console.log("error");
+            this.popup.error({detail:"Error",summary:"Something wrong",duration:2500});
+          }
+      );
+    }else{
+      this.popup.error({detail:"Error",summary:"Empty Fields",duration:2500});
+    }
+
   }
 
 

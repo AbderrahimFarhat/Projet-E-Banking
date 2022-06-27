@@ -1,8 +1,8 @@
 <div class="container-fluid">
-    <div class="shadow bg-light border container mt-5 py-4">
+    <div class="shadow bg-light border container my-5 py-4">
         <div class="col-md-7 col-lg-8 mx-auto">
           <div class="d-flex gap-3 p-3 align-items-center"style="background-color:white; border:solid 1px #ced4da;" >
-            <img src={{creditor.img}} width="70" height="40" class="rounded-circle flex-shrink-0">
+            <img [src]="creditor.logo" width="70" height="40" class="rounded-circle flex-shrink-0">
             <div class="d-flex gap-2 w-100 justify-content-between">
               <div>
                 <h5 class="mb-0">{{creditor.title}}</h5>
@@ -15,17 +15,24 @@
                 <thead>
                   <tr>
                     <th scope="col">Description</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Amount</th>
-                    <th scope="col"></th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let unpaid of unpaidBillTemp">
                     <td>{{unpaid.description}}</td>
+                    <td>{{unpaid.type}}</td>
                     <td>{{unpaid.amount}}</td>
-                    <td><button class="btn btn-primary" *ngIf="!unpaid.state" (click)="onChecked(unpaid)" type="submit">check</button></td>
-                    <td><button class="btn btn-danger" *ngIf="unpaid.state" (click)="unChecked(unpaid)" type="submit">uncheck</button></td>
+                    <td>
+                      <button class="btn btn-primary" style="width: 5rem;" *ngIf="unpaid.state" (click)="onChecked(unpaid)" type="submit">
+                        select
+                      </button>
+                      <button class="btn btn-danger" style="width: 5rem;" *ngIf="!unpaid.state" (click)="unChecked(unpaid)" type="submit">
+                        unselect
+                      </button>
+                    </td>
                     
                   </tr>
                 </tbody>

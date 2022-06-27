@@ -29,6 +29,8 @@ import { NgToastModule } from 'ng-angular-popup';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptor } from './token.interceptor';
 import { BillComponent } from './bill/bill.component';
+import { ResetPasswordGuard } from './reset-password.guard';
+import { VerifyComponent } from './verify/verify.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { BillComponent } from './bill/bill.component';
     FactureFormComponent,
     DonationFormComponent,
     FooterComponent,
-    BillComponent
+    BillComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,
@@ -68,42 +71,60 @@ import { BillComponent } from './bill/bill.component';
       },
       {
         path:'register',
-        component: RegisterComponent,
+        component: RegisterComponent
+      },
+      {
+        path:'resetPassword',
+        component: ResetPwdComponent,
         canActivate:[AuthGuard]
       },
       {
-        path:'paiment',
+        path:'payment',
         component: PaimentHomeComponent,
+        canActivate:[AuthGuard,ResetPasswordGuard],
         children:[
           {
             path:'facture',
-            component: FactureComponent
+            component: FactureComponent,
+            canActivate:[AuthGuard,ResetPasswordGuard],
+            
           },
           {
             path:'donation',
-            component: DonationComponent
+            component: DonationComponent,
+            canActivate:[AuthGuard,ResetPasswordGuard],
           },
           {
             path:'recharge',
-            component: RechargeComponent
+            component: RechargeComponent,
+            canActivate:[AuthGuard,ResetPasswordGuard],
           },
           {
             path:'payer',
-            component: FactureFormComponent
+            component: FactureFormComponent,
+            canActivate:[AuthGuard,ResetPasswordGuard],
           },
           {
             path:'don',
-            component: DonationFormComponent
+            component: DonationFormComponent,
+            canActivate:[AuthGuard,ResetPasswordGuard],
           },
           {
             path:'bill',
-            component: BillComponent
+            component: BillComponent,
+            canActivate:[AuthGuard,ResetPasswordGuard],
           },
+          {
+            path:'verification',
+            component: VerifyComponent,
+            canActivate:[AuthGuard,ResetPasswordGuard]
+          }
         ]
       },
       {
         path:'home',
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate:[AuthGuard,ResetPasswordGuard],
       },
       {
         path:'',

@@ -9,25 +9,27 @@ import { Creditor } from '../model/creditor';
   styleUrls: ['./facture.component.css']
 })
 export class FactureComponent implements OnInit {
-  creditors : Creditor[]=[{"id":1,"title":"this is a title","description":"description here"}
-  ,{"id":2,"title":"this is a title","description":"description here"},
-  {"id":3,"title":"this is a title","description":"description here"}
-  ,{"id":4,"title":"this is a title","description":"description here"},
-  {"id":5,"title":"this is a title","description":"description here"}];
+  creditors : Creditor[]=[];
+  creditorsTemp : Creditor[]=[];
   constructor(private clientService:ClientService,private router:Router) {
     console.log(this.creditors);
     
-    // this.clientService.getCreditors().subscribe(
-    //   result=>{
-    //     this.creditors=result;
-    //   }
-    // );
+    this.clientService.getCreditors().subscribe(
+      result=>{
+        this.creditorsTemp=result;
+        for(let i=0 ; i< this.creditorsTemp.length; i++){
+          if(this.creditorsTemp[i].type==="Creditor"){
+            this.creditors.push(this.creditorsTemp[i]);
+          }
+        }        
+      }
+    );
    }
 
   ngOnInit(): void {
   }
-  paye(creditor:Creditor){
+  pay(creditor:Creditor){
     this.clientService.creditor=creditor;
-    this.router.navigate(["/paiment/payer"]);
+    this.router.navigate(["/payment/payer"]);
   }
 }

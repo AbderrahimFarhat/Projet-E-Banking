@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { ClientService } from '../client.service';
 import { Creditor } from '../model/creditor';
 import { Unpaid } from '../model/unpaid';
@@ -11,22 +12,22 @@ import { Unpaid } from '../model/unpaid';
 })
 export class FactureFormComponent implements OnInit {
 
-  creditor:Creditor={"id":0,"description":'',"img":'',"title":''};
-  json:any=[{"amount":1000,"description":"dcfgvhbjnk","id":1},
-  {"amount":3000,"description":"nbjnb","id":2}];
+  creditor:Creditor={
+    "id": 0, "description": '', "logo": '', "title": '',
+    "type": ''
+  };
   unpaidBill:Unpaid[]=[];
   unpaidBillTemp:Unpaid[]=[];
   payedBillId:number[];
   totale:number=0;
-  constructor(private clientService:ClientService,private route:Router) {
+  constructor(private clientService:ClientService,private route:Router,private popup:NgToastService) {
     this.creditor=this.clientService.creditor;
-    this.unpaidBill=this.json;
-    this.unpaidBillTemp=this.json;
     this.payedBillId=[];
     console.log(this.unpaidBillTemp);
-    this.clientService.getUnpaids().subscribe(
+    this.clientService.getUnpaid(this.creditor.id).subscribe(
       result=>{
-        this.unpaidBill=this.json;
+        this.unpaidBill=result;
+        this.unpaidBillTemp=result;
         
       }
     )
@@ -41,12 +42,11 @@ export class FactureFormComponent implements OnInit {
         this.unpaidBillTemp.splice(index,1);
       }
     });
-    this.unpaidBill;
   }
   onChecked(unpaid:Unpaid){
     this.totale=this.totale+unpaid.amount;
     this.payedBillId.push(unpaid.id);
-    unpaid.state=true;
+    unpaid.state=false;
   }
   unChecked(unpaid:Unpaid){
     this.totale=this.totale-unpaid.amount;
@@ -54,13 +54,17 @@ export class FactureFormComponent implements OnInit {
       if(element==unpaid.id) this.payedBillId.splice(index,1);
    });
    console.log(this.payedBillId);
-   
-    unpaid.state=false;
+    unpaid.state=true;
   }
   paye(){
-    this.clientService.payeBill(this.payedBillId,this.creditor.id).subscribe(result=>{
-      console.log("success");
-      this.route.navigate(["/paiment/facture"]);
-    })
+    if(this.payedBillId.length!==0)
+    {
+      this.clientService.createBill(this.payedBillId,this.creditor.id).subscribe(result=>{
+        console.log("success");
+        this.route.navigate(["/payment/verification"],{queryParams:{id:result}});
+      })
+    }else{
+      this.popup.error({detail:"Error",summary:"Please select unpaid",duration:2500});
+    }
   }
 }

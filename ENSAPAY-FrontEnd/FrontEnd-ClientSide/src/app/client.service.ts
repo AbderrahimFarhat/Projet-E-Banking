@@ -28,6 +28,9 @@ export class ClientService {
   getMe():Observable<any>{
     return this.http.get<any>(this.host+'/api/me');
   }
+  resend(id:string):Observable<any>{
+    return this.http.post<any>(this.host+'/api/bills/'+id+'/resend','');
+  }
   generateUnpaid():Observable<any>{
     return this.http.post<any>(this.host+'/api/me/generate-unpaid','');
   }

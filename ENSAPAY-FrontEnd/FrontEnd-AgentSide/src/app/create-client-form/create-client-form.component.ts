@@ -13,7 +13,7 @@ export class CreateClientFormComponent implements OnInit {
   public clientForm:FormGroup;
   constructor(private router: Router,private clientService:ClientService,private fb: FormBuilder,private popup:NgToastService) {
     this.clientForm = this.fb.group({
-      AccountType: '',
+      accountType: '',
       lastName:'',
       firstName:'',
       phone:'',

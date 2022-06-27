@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   public registerForm:FormGroup;
   constructor(private router: Router,private authService:AuthService,private fb: FormBuilder,private popup:NgToastService) {
     this.registerForm = this.fb.group({
-      AccountType: new FormControl('',Validators.required),
+      accountType: new FormControl('',Validators.required),
       lastName:new FormControl('',Validators.required),
       firstName:new FormControl('',Validators.required),
       phone:new FormControl('',Validators.required),

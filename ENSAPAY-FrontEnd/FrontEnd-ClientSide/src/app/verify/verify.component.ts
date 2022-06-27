@@ -20,6 +20,15 @@ export class VerifyComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  resend(){
+    this.clientService.resend(this.route.snapshot.queryParamMap.get('id')!).subscribe(result=>{
+      this.popup.info({detail:"Success",summary:"Verification code was sent successfully",duration:2500});
+    },
+    error=>{        
+      this.popup.error({detail:"Error",summary:"Something Went wrong",duration:2500}); 
+    }
+    )
+  }
   submit(){
     if(this.localForm.valid){
       this.clientService.verifyBill(this.route.snapshot.queryParamMap.get('id')!,this.localForm.get("code")?.value).subscribe(result=>{
@@ -29,9 +38,8 @@ export class VerifyComponent implements OnInit {
         this.popup.success({detail:"Success",summary:"Transaction passed successfully",duration:2500});
         
       },
-      error=>{
-        console.log(error);
-        this.popup.error({detail:"Error",summary:error.message,duration:2500});
+      error=>{        
+        this.popup.error({detail:"Error",summary:error.error.message,duration:2500});
         
       }
       )

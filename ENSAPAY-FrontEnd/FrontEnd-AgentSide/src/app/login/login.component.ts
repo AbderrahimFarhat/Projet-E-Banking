@@ -14,7 +14,9 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,private authService:AuthService,private fb: FormBuilder,private popup:NgToastService) {
     this.loginForm = this.fb.group({
       username: '',
-      password:''
+      password:'',
+      role:'AGENT'
+
     });
    }
   ngOnInit(): void {

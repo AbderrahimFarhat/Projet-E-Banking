@@ -4,25 +4,29 @@ import com.ensa.ENSAPAY.entities.*;
 import com.ensa.ENSAPAY.services.BillService;
 import com.ensa.ENSAPAY.services.ClientService;
 import com.ensa.ENSAPAY.services.CreditorService;
+import com.ensa.ENSAPAY.services.UnpaidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/client")
+@RequestMapping(path = "/api")
 public class ClientController
 {
     private final ClientService clientService;
     private final CreditorService creditorService;
     private final BillService billService;
+    private final UnpaidService unpaidService;
 
     @Autowired
-    public ClientController(ClientService clientService, CreditorService creditorService, BillService billService)
+    public ClientController(ClientService clientService, CreditorService creditorService, BillService billService, UnpaidService unpaidService)
     {
         this.clientService = clientService;
         this.creditorService = creditorService;
         this.billService = billService;
+        this.unpaidService = unpaidService;
     }
 
 /*    @GetMapping
@@ -31,10 +35,10 @@ public class ClientController
         return this.clientService.getClients();
     }*/
 
-    @PutMapping(value = "/client/change-password")
-    public boolean changePassword(@RequestParam String newPassword)
+    @PostMapping(value = "/client/change-password")
+    public void changePassword(@RequestParam("new-password") String newPassword)
     {
-        return this.clientService.changePassword(newPassword);
+        this.clientService.changePassword(newPassword);
     }
 
     @GetMapping("/client/bills")
@@ -51,23 +55,38 @@ public class ClientController
     }
 */
 
-    @PostMapping("/create-request")
+    @PostMapping("/client/create-request")
     public void addClientRequest(@RequestBody Demande demande)
     {
         this.clientService.addClientRequest(demande);
     }
 
-    @GetMapping("/creditors")
+    @GetMapping("/client/creditors")
     public List<Creditor> getCreditors()
     {
         return this.creditorService.getCreditors();
     }
 
-    @PostMapping("/creditors/{creditorId}/bill")
-    public void generateBill(@PathVariable("creditorId") Long creditorId,@RequestBody List<Long> unpaidIds)
+    @GetMapping("/client/creditors/{creditorId}/unpaid")
+    public List<Unpaid> getCreditorUnpaid(@PathVariable("creditorId") Long creditorId)
     {
-        this.billService.createBill(creditorId,unpaidIds);
+        return this.unpaidService.getCreditorUnpaid(creditorId);
     }
+
+    @PostMapping("/client/creditors/{creditorId}/bill")
+    public Long generateBill(@PathVariable("creditorId") Long creditorId,@RequestBody List<Long> unpaidIds)
+    {
+        return this.billService.createBill(creditorId,unpaidIds);
+    }
+    @PostMapping("/client/creditors/{creditorId}/charity")
+    public Long generateCharity(@PathVariable("creditorId") Long creditorId,@RequestParam BigDecimal amount)
+    {
+        return this.billService.generateCharity(creditorId,amount);
+    }
+
+
+    @PostMapping("/me/generate-unpaid")
+    public void generateUnpaid(){ unpaidService.generateUnpaid();}
 
     @GetMapping("/me")
     public Client getMyInfos()

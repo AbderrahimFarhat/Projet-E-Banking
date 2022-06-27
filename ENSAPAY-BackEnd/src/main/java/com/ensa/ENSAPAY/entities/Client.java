@@ -23,7 +23,8 @@ public class Client extends ClientTemplate
     @ManyToOne
     @JoinColumn(name="created_by")
     private Agent createdBy;
-    private BigDecimal balance;
+
+    private BigDecimal balance = new BigDecimal(0);
     public Client(){
 
     }

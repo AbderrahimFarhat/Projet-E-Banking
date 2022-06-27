@@ -4,6 +4,7 @@ package com.ensa.ENSAPAY.security.auth;
 import com.ensa.ENSAPAY.entities.Admin;
 import com.ensa.ENSAPAY.entities.Agent;
 import com.ensa.ENSAPAY.entities.Client;
+import com.ensa.ENSAPAY.entities.User;
 import com.ensa.ENSAPAY.repositories.AdminRepository;
 import com.ensa.ENSAPAY.repositories.AgentRepository;
 import com.ensa.ENSAPAY.repositories.ClientRepository;
@@ -35,12 +36,20 @@ public class ApplicationUserDaoService implements ApplicationUserDao
     public Optional<ApplicationUser> selectApplicationUserByUsername(String username)
     {
         return getApplicationUsers().stream()
-                .filter(applicationUser -> username.equals(applicationUser.getUsername()))
+                .filter(applicationUser -> username.equals(applicationUser.getUsername() ))
                 .findFirst();
     }
 
-    private List<ApplicationUser> getApplicationUsers()
+    private List<ApplicationUser> getApplicationUsers(/*UserApplicationRole role*/)
     {
+/*        Object list;
+        switch (role){
+            case ADMIN :
+                list =  adminRepository.findAll();
+                break;
+            case AGENT : break;
+            case CLIENT : break;
+        }*/
         List<Admin> admins = adminRepository.findAll();
         List<Agent> agents = agentRepository.findAll();
         List<Client> clients = clientRepository.findAll();

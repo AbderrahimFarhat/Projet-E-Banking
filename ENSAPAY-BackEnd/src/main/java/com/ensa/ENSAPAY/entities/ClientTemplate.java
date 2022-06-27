@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 public abstract class ClientTemplate extends User
 {
     private String email;
-    @Column(nullable = false)
+    @Column(nullable = false ,unique = true)
     private String phone;
     private String accountType;
 }

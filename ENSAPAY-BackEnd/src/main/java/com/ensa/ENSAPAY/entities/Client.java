@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @AttributeOverrides({
         @AttributeOverride(name = "email", column = @Column),
-        @AttributeOverride(name = "phone", column = @Column),
+        @AttributeOverride(name = "phone", column = @Column(unique = true)),
         @AttributeOverride(name = "accountType", column = @Column)
 })
 @Data

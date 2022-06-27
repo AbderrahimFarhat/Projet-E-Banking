@@ -26,7 +26,7 @@ public class Bill
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client client;
 
-    @ManyToMany 
+    @ManyToMany
     @JoinTable(
             name="bill_unpaid_list",
             joinColumns = @JoinColumn(name = "id"),

@@ -13,8 +13,8 @@ export class LoginComponent implements OnInit {
   public loginForm:FormGroup;
   constructor(private router: Router,private authService:AuthService,private fb: FormBuilder,private popup:NgToastService) {
     this.loginForm = this.fb.group({
-      username: '',
-      password: ''
+      username: new FormControl('',Validators.compose([Validators.required])),
+      password: new FormControl('',Validators.compose([Validators.required]))
     });
    }
   ngOnInit(): void {
@@ -30,19 +30,23 @@ export class LoginComponent implements OnInit {
   //   }
   // }
   authentication(){
-    this.authService.login(this.loginForm.value).subscribe(
-      result => {
-      console.log("/login");
-      this.authService.setToken(result);
-      this.popup.success({detail:"Success",summary:"Logged successfully",duration:2500});
-      this.router.navigate(['/', 'home']);
-      },
-      error => {
-        console.log("error");
-        this.popup.error({detail:"Error",summary:"Something wrong",duration:2500});
-      }
-      
-      );
+    if(this.loginForm.valid){
+      this.authService.login(this.loginForm.value).subscribe(
+        result => {
+        console.log("/login");
+        this.authService.setToken(result.token);
+        this.popup.success({detail:"Success",summary:"Logged successfully",duration:2500});
+        this.router.navigate(['/', 'home']);
+        },
+        error => {
+          console.log("error");
+          this.popup.error({detail:"Error",summary:"Something wrong",duration:2500});
+        }
+        
+        );
+    }else{
+      this.popup.error({detail:"Error",summary:"Empty Fields",duration:2500});
+    }
   }
 
 }

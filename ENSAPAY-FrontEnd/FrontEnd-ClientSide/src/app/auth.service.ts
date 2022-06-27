@@ -8,7 +8,13 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   host=environment.host;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    if(localStorage.getItem("token")!=null){
+      const token = localStorage.getItem("token");
+      this._token = token !== null ? token : "";
+      this.setToken(this._token);
+    }
+  }
   private isPwdChanged=false;
   private _token: string='';
   setToken(value:string){
@@ -22,10 +28,11 @@ export class AuthService {
     return this.http.post<any>(this.host+'/login',data);
   }
   resetPwd(pwd:string):Observable<any>{
-    return this.http.post<any>(this.host+'/api/client/change-password',{"newPassword":pwd});
+    return this.http.post<any>(this.host+'/api/client/change-password?new-password='+pwd,'');
   }
-  setIsPwdChanged(state:boolean){
+  setIsPwdChanged(state:any){
     this.isPwdChanged=state;
+    localStorage.setItem("state",state);
   }
   isLoggedIn(): boolean{
     return !!localStorage.getItem("token");

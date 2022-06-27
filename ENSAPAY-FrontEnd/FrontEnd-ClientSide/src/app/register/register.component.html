@@ -1,5 +1,7 @@
 <div class="container-fluid background loginComp">
-    <h1 style="color:white; font-family: 'Anton', sans-serif; font-size: 4rem; margin-bottom:1em;" >ENSA-PAY</h1>
+    <button style="background: none;border:0;padding: 0;" routerLink="../login">
+        <h1 style="color:white; font-family: 'Anton', sans-serif; font-size: 4rem; margin-bottom:1em;"  >ENSA-PAY</h1>
+    </button>
     <div>
     <div class="text-center shadow bg-light border border-radius mx-auto" style="width: 75%;">
         <div class="card-header">
@@ -21,7 +23,8 @@
                 <div class="col-12">
                     <input type="text" formControlName="firstName" placeholder="First Name" class="form-control" id="firstName">
                 </div>
-                <div class="col-12">
+                <div class="col-12 input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">+212</span>
                     <input type="number" formControlName="phone" placeholder="Phone Number" class="form-control" id="phone">
                 </div>  
                 <div class="col-12">

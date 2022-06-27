@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AgentService } from '../agent.service';
@@ -11,13 +12,15 @@ import { Agent } from '../model/agent';
 export class AgentTableComponent implements OnInit {
 
   agents:Agent[] = [];
-  constructor(private router:Router,private agentService:AgentService) { }
-
-  ngOnInit(): void {
+  constructor(private router:Router,private agentService:AgentService) { 
     this.agentService.getAgents().subscribe(data => {
       console.log(data);
       this.agents=data;
       
-    });
+    });  
+  }
+
+  ngOnInit(): void {
+      
   }
 }

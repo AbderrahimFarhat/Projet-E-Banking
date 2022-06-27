@@ -9,6 +9,15 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private host =environment.host;
   private _token: string='';
+  
+  constructor(private http: HttpClient) {
+    if(localStorage.getItem("token")!=null){
+      const token = localStorage.getItem("token");
+      this._token = token !== null ? token : "";
+      this.setToken(this._token);
+      
+    }
+  }
   setToken(value:string){
     this._token=value;
     localStorage.setItem("token",value);
@@ -16,7 +25,6 @@ export class AuthService {
   getToken():string{
     return this._token;
   }
-  constructor(private http: HttpClient) {}
   
   login(data:any):Observable<any>
   {

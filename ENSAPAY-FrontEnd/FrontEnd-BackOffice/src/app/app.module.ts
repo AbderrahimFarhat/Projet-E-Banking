@@ -19,6 +19,7 @@ import { NgToastModule } from 'ng-angular-popup';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { TokkenInterceptor } from './tokken.interceptor';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [

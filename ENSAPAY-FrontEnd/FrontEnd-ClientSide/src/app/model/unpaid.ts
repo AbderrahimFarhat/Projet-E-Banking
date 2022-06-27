@@ -3,4 +3,5 @@ export class Unpaid {
     description:string='';
     amount:number=0;
     state:boolean=true;
+    type?:string;
 }

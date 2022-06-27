@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -11,13 +12,13 @@ import { AuthService } from '../auth.service';
 export class RegisterComponent implements OnInit {
 
   public registerForm:FormGroup;
-  constructor(private router: Router,private authService:AuthService,private fb: FormBuilder,) {
+  constructor(private router: Router,private authService:AuthService,private fb: FormBuilder,private popup:NgToastService) {
     this.registerForm = this.fb.group({
-      AccountType: '',
-      lastName:'',
-      firstName:'',
-      phone:'',
-      email:''
+      AccountType: new FormControl('',Validators.required),
+      lastName:new FormControl('',Validators.required),
+      firstName:new FormControl('',Validators.required),
+      phone:new FormControl('',Validators.required),
+      email:new FormControl('',Validators.required)
     });
    }
   ngOnInit(): void {
@@ -27,11 +28,14 @@ export class RegisterComponent implements OnInit {
     console.log(this.registerForm.value);
     if(this.registerForm.valid){
       this.authService.register(this.registerForm.value).subscribe(data => {
-        this.router.navigate(['/', 'home']);
+        this.router.navigate(['/', 'login']);
+        this.popup.success({detail:"Success",summary:"Your request was sent successfully",duration:2500});
+      },error=>{
+        this.popup.error({detail:"Error",summary:"Something went wrong",duration:2500});
       });
     }else{
       console.log("error");
-      
+      this.popup.error({detail:"Error",summary:"Empty Fields",duration:2500});
     }
   }
 

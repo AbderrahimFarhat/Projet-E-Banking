@@ -10,20 +10,27 @@ import { Creditor } from '../model/creditor';
 })
 export class DonationComponent implements OnInit {
 
-  donations : Creditor[]=[{"id":1,"title":"this is a title","description":"description here"}
-  ,{"id":2,"title":"this is a title","description":"description here"},
-  {"id":3,"title":"this is a title","description":"description here"}
-  ,{"id":4,"title":"this is a title","description":"description here"},
-  {"id":5,"title":"this is a title","description":"description here"}];
+  donations : Creditor[]=[];
+  donationsTemp : Creditor[]=[];
   constructor(private clientService:ClientService,private router:Router) {
     console.log(this.donations);
+    this.clientService.getCreditors().subscribe(
+      result=>{
+        this.donationsTemp=result;
+        for(let i=0 ; i< this.donationsTemp.length; i++){
+          if(this.donationsTemp[i].type==="Charity"){
+            this.donations.push(this.donationsTemp[i]);
+          }
+        } 
+      }
+    );
    }
 
   ngOnInit(): void {
   }
   paye(creditor:Creditor){
     this.clientService.creditorDonation=creditor;
-    this.router.navigate(["/paiment/don"]);
+    this.router.navigate(["/payment/don"]);
   }
 
 }

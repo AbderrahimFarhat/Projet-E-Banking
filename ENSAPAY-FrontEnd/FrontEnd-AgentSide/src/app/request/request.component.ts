@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ClientService } from '../client.service';
 import { Client } from '../model/client';
 import { faTrashCan,faSquareCheck } from '@fortawesome/free-solid-svg-icons';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-request',
@@ -18,6 +19,7 @@ export class RequestComponent implements OnInit {
   constructor(private router:Router,private clientService:ClientService) {
     this.clientService.getRequest().subscribe(result =>{
       this.requests=result;
+      
     })
   }
 
@@ -29,9 +31,7 @@ export class RequestComponent implements OnInit {
     })
     
   }
-  searchClient(id:number){
-    
-  }
+
   delete(id:number){
     this.clientService.acceptOrRefuseRequest(id,false).subscribe(data=>{
       this.removeFromArray(id);

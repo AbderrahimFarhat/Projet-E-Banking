@@ -28,11 +28,13 @@ export class ResetPwdComponent implements OnInit {
     {
       this.authService.resetPwd(this.resetForm.get("newPassword")?.value).subscribe(
         result => {
+          console.log(result);
           this.authService.setIsPwdChanged(true);
           this.popup.success({detail:"Success",summary:"Password reset successfully",duration:2500});
           this.router.navigate(['/', 'home']);
         },
         error => {
+          console.log(error);
           this.popup.error({detail:"Error",summary:"Something went wrong",duration:2500});
         }
       );

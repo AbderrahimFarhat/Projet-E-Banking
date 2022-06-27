@@ -13,28 +13,41 @@ export class ClientService {
 
   host=environment.host;
   public myAccount!: Client;
-  creditor:Creditor={"id":0,"description":'',"img":'',"title":''};
+  public billToShow!: Bill;
+  creditor:Creditor={
+    "id": 0, "description": '', "logo": '', "title": '',
+    "type": ''
+  };
   bill?:Bill;
-  creditorDonation:Creditor={"id":0,"description":'',"img":'',"title":''};
+  creditorDonation:Creditor={
+    "id": 0, "description": '', "logo": '', "title": '',
+    "type": ''
+  };
   constructor(private http: HttpClient) {}
 
   getMe():Observable<any>{
-    return this.http.get<any>(this.host+'/api/client/me');
+    return this.http.get<any>(this.host+'/api/me');
+  }
+  generateUnpaid():Observable<any>{
+    return this.http.post<any>(this.host+'/api/me/generate-unpaid','');
+  }
+  verifyBill(id:string,code:string):Observable<any>{
+    return this.http.post<any>(this.host+'/api/bills/'+id+'/verify',code);
   }
 
   getHistoric():Observable<any>{
-    return this.http.get<any>(this.host+'/api/historic');
+    return this.http.get<any>(this.host+'/api/me/history');
   }
   getCreditors():Observable<any>{
-    return this.http.get<any>(this.host+'/api/creditors');
+    return this.http.get<any>(this.host+'/api/client/creditors');
+  } 
+  getUnpaid(id:number):Observable<any>{
+    return this.http.get<any>(this.host+'/api/client/creditors/'+id+'/unpaid');
   }
-  getCreditorsDonation():Observable<any>{
-    return this.http.get<any>(this.host+'/api/creditors');
+  createBill(tableId:any,id:number):Observable<any>{
+    return this.http.post<any>(this.host+'/api/client/creditors/'+id+'/bill',tableId);
   }
-  getUnpaids():Observable<any>{
-    return this.http.get<any>(this.host+'/api/unpaids');
-  }
-  payeBill(tableId:any,id:number):Observable<any>{
-    return this.http.get<any>(this.host+'/api/client/creditors/'+id+'/bill',tableId);
+  charity(amount:any,id:number):Observable<any>{
+    return this.http.post<any>(this.host+'/api/client/creditors/'+id+'/charity?amount='+amount,'');
   }
 }

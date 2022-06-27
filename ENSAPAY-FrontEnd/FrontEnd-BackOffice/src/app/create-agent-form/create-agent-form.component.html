@@ -70,7 +70,10 @@
                 </div>
                 <div class="row m-1 g-3">
                     <div class="col">
-                        <input type="number" formControlName="phone" placeholder="Phone Number" class="form-control" id="phone">
+                        <div class="col input-group flex-nowrap">
+                            <span class="input-group-text" id="addon-wrapping">+212</span>
+                            <input type="number" formControlName="phone" placeholder="Phone Number" class="form-control" id="phone">
+                        </div>
                         <div *ngIf="agentForm.get('phone')?.hasError('required') && localForm.submitted" class="text-danger validationAlert">
                             *
                         </div>
